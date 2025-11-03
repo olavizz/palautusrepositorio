@@ -17,6 +17,8 @@ def main():
             players.append(player)
         else:
             continue
+    
+    players.sort(key=lambda player: player.points, reverse= True)
 
     for player in players:
         print(player)
