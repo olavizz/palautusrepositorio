@@ -12,3 +12,4 @@ class PlayerStats:
         players_by_nationality.sort(key=lambda player: player.points, reverse= True)
 
         return players_by_nationality
+    
