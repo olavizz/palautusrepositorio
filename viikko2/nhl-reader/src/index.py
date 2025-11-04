@@ -1,8 +1,6 @@
 from rich.console import Console
 from rich.table import Table
-from player import Player
-from player_reader import PlayerReader
-from player_stats import PlayerStats
+from player import PlayerReader, PlayerStats
 
 def main():
     season = input("Enter season: [2018-19/2019-20/2020-21/2021-22/2022-23/2023-24/2024-25/2025-26] ")
