@@ -131,7 +131,6 @@ class TestKauppa(unittest.TestCase):
         self.pankki_mock.tilisiirto.assert_called_with("Jouko", 2, "112", "33333-44455", 7)
     
     def test_tuotteen_poistaminen_ostoskorista(self):
-        #te
         
         self.kauppa.aloita_asiointi()
         self.kauppa.lisaa_koriin(1)
