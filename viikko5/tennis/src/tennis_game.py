@@ -7,49 +7,41 @@ class TennisGame:
 
     def won_point(self, player_name):
         if player_name == "player1":
-            self.m_score1 = self.m_score1 + 1
+            self.m_score1 += 1
         else:
-            self.m_score2 = self.m_score2 + 1
+            self.m_score2 += 1
 
     def get_score(self):
-        score = ""
-        temp_score = 0
-
         if self.m_score1 == self.m_score2:
-            if self.m_score1 == 0:
-                score = "Love-All"
-            elif self.m_score1 == 1:
-                score = "Fifteen-All"
-            elif self.m_score1 == 2:
-                score = "Thirty-All"
-            else:
-                score = "Deuce"
+            score = self.even_score()
+
         elif self.m_score1 >= 4 or self.m_score2 >= 4:
-            minus_result = self.m_score1 - self. m_score2
-
-            if minus_result == 1:
-                score = "Advantage player1"
-            elif minus_result == -1:
-                score = "Advantage player2"
-            elif minus_result >= 2:
-                score = "Win for player1"
-            else:
-                score = "Win for player2"
+            score = self.advantage_scoring()
         else:
-            for i in range(1, 3):
-                if i == 1:
-                    temp_score = self.m_score1
-                else:
-                    score = score + "-"
-                    temp_score = self.m_score2
+            score = self.normal_score()
+        return score
 
-                if temp_score == 0:
-                    score = score + "Love"
-                elif temp_score == 1:
-                    score = score + "Fifteen"
-                elif temp_score == 2:
-                    score = score + "Thirty"
-                elif temp_score == 3:
-                    score = score + "Forty"
+    def even_score(self):
+        if self.m_score1 > 2:
+            return "Deuce"
+        calls = ["Love-All", "Fifteen-All", "Thirty-All"]
+        return calls[self.m_score1]
 
+    def advantage_scoring(self):
+        game_score = self.m_score1 - self.m_score2
+
+        if game_score == 1:
+            score = "Advantage player1"
+        elif game_score == -1:
+            score = "Advantage player2"
+        elif game_score >= 2:
+            score = "Win for player1"
+        else:
+            score = "Win for player2"
+        return score
+
+    def normal_score(self):
+        calls = ["Love", "Fifteen", "Thirty", "Forty"]
+        score = calls[self.m_score1]
+        score += f"-{calls[self.m_score2]}"
         return score
