@@ -16,6 +16,10 @@ class KiviPaperiSakset(ABC):
             tuomari.kirjaa_siirto(ekan_siirto, tokan_siirto)
             print(tuomari)
 
+            # Jos jommallakummalla on saavutettu voittoraja (esim. 5 voittoa), lopetetaan peli
+            if hasattr(tuomari, "onko_voittaja") and tuomari.onko_voittaja():
+                break
+
             ekan_siirto = input("Ensimmäisen pelaajan siirto: ")
             tokan_siirto = self._toisen_siirto()
             self._aseta_tkoaly_siirto(tokan_siirto)
